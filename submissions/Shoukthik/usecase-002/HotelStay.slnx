@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HotelStay.Api/HotelStay.Api.csproj" />
+  <Project Path="HotelStay.Tests/HotelStay.Tests.csproj" />
+</Solution>
