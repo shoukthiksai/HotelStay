@@ -108,15 +108,18 @@ Mandated coverage — write these deliberately, not exhaustively:
 
 ## Phase 7 — Frontend (hotelstay-ui, Angular)
 
-- [ ] `ng new hotelstay-ui` (routing, SCSS)
-- [ ] Typed `HotelService` (search, book, getBooking)
-- [ ] Search form (reactive): destination dropdown, dates, optional room type
-- [ ] Results list: provider badge, room type, per-night + total price, cancellation
-      label; sortable by total price asc/desc
-- [ ] Booking form (reactive) with client-side document/destination validator
-- [ ] Confirmation view: reference, provider, total, cancellation policy
+- [x] `ng new hotelstay-ui` — Angular 22, standalone, **zoneless** (signals), SCSS
+- [x] Typed `HotelService` (search, book) — `getBooking` omitted: no UI consumer, endpoint
+      still exists server-side; `BookingFlow` signal service carries state between routes
+- [x] Search form (reactive): destination dropdown, dates, optional room type;
+      cross-field `checkOut > checkIn` validator
+- [x] Results list: provider badge, room type, per-night + total price, cancellation
+      label, stars/amenities when present; sortable by price asc/desc
+- [x] Booking form (reactive) with client-side document/destination validator (mirrors server)
+- [x] Confirmation view: reference, provider, total, cancellation policy
 
-**Exit:** `ng build` passes; full search → book → confirm flow works against the API.
+**Exit:** `ng build` passes; full search → book → confirm flow verified in-browser against the
+live API (Paris booking, passport enforced, ref `HS-…`, total £720 = 4×180). ✅
 
 ---
 
@@ -157,3 +160,9 @@ conflicting constraint, tooling failure):
 2. If still blocked, log it under **Blockers** below with the question and the
    assumption taken to keep moving. Do not silently guess.
 3. If the resolution is an architectural choice, also add an ADR to DECISIONS.md.
+
+### Blockers
+
+- **B-001 (Phase 0) — Toolchain not installed.** `dotnet` host had runtimes but no SDK;
+  Node/npm absent. **RESOLVED 2026-06-15:** installed .NET SDK 10.0.301, Node v24.16.0,
+  Angular CLI 22.0.1. Target framework is **net10.0** (the installed SDK) — see ADR-007.

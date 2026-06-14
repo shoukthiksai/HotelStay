@@ -1,0 +1,78 @@
+<form class="card search-form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="grid">
+    <div class="field">
+      <label for="destination">Destination</label>
+      <select id="destination" formControlName="destination">
+        <option value="" disabled>Select a city</option>
+        @for (d of destinations; track d.name) {
+          <option [value]="d.name">{{ d.name }}{{ d.international ? ' (international)' : '' }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="checkIn">Check-in</label>
+      <input id="checkIn" type="date" formControlName="checkIn" />
+    </div>
+
+    <div class="field">
+      <label for="checkOut">Check-out</label>
+      <input id="checkOut" type="date" formControlName="checkOut" />
+    </div>
+
+    <div class="field">
+      <label for="roomType">Room type</label>
+      <select id="roomType" formControlName="roomType">
+        <option value="">Any</option>
+        @for (rt of roomTypes; track rt) {
+          <option [value]="rt">{{ rt }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="actions">
+    @if (form.errors?.['dateOrder']) {
+      <span class="error">Check-out must be after check-in.</span>
+    }
+    <button class="btn" type="submit" [disabled]="loading()">
+      {{ loading() ? 'Searching…' : 'Search' }}
+    </button>
+  </div>
+</form>
+
+@if (error()) {
+  <p class="error results-error">{{ error() }}</p>
+}
+
+@if (context(); as ctx) {
+  <section class="results">
+    <header class="results-head">
+      <h2>{{ sortedResults().length }} room(s) in {{ ctx.destination }} · {{ ctx.nights }} night(s)</h2>
+      @if (sortedResults().length > 1) {
+        <button class="btn btn-ghost" type="button" (click)="toggleSort()">
+          Price {{ sort() === 'asc' ? '↑' : sort() === 'desc' ? '↓' : '↕' }}
+        </button>
+      }
+    </header>
+
+    @for (offer of sortedResults(); track offer.provider + offer.roomType) {
+      <article class="card offer">
+        <div class="offer-main">
+          <span class="badge badge--{{ offer.provider.toLowerCase() }}">{{ offer.provider }}</span>
+          <h3>{{ offer.roomType }}</h3>
+          <p class="policy">{{ cancellationLabels[offer.cancellationPolicy] }}</p>
+          @if (offer.starRating) { <p class="meta">{{ offer.starRating }}★</p> }
+          @if (offer.amenities?.length) { <p class="meta">{{ offer.amenities!.join(' · ') }}</p> }
+        </div>
+        <div class="offer-price">
+          <p class="rate">£{{ offer.nightlyRate }}<span>/night</span></p>
+          <p class="total">£{{ total(offer) }} total</p>
+          <button class="btn" type="button" (click)="book(offer)">Book</button>
+        </div>
+      </article>
+    } @empty {
+      <p class="empty">No rooms match your search.</p>
+    }
+  </section>
+}

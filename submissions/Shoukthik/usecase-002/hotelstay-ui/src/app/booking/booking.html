@@ -1,0 +1,45 @@
+@if (selection; as s) {
+  <section class="booking">
+    <article class="card summary">
+      <span class="badge badge--{{ s.offer.provider.toLowerCase() }}">{{ s.offer.provider }}</span>
+      <h2>{{ s.offer.roomType }} · {{ s.destination }}</h2>
+      <p class="dates">{{ s.checkIn }} → {{ s.checkOut }} ({{ s.nights }} night(s))</p>
+      <p class="policy">{{ cancellationLabels[s.offer.cancellationPolicy] }}</p>
+      <p class="total">£{{ s.total }} total <span>(£{{ s.offer.nightlyRate }}/night)</span></p>
+    </article>
+
+    <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+      <h3>Guest details</h3>
+
+      <div class="field">
+        <label for="passengerName">Passenger name</label>
+        <input id="passengerName" type="text" formControlName="passengerName" />
+      </div>
+
+      <div class="field">
+        <label for="documentType">Document type</label>
+        <select id="documentType" formControlName="documentType">
+          <option value="Passport">Passport</option>
+          <option value="NationalId">National ID</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="documentNumber">Document number</label>
+        <input id="documentNumber" type="text" formControlName="documentNumber" />
+      </div>
+
+      @if (form.errors?.['documentMismatch']) {
+        <p class="error">{{ s.destination }} is an international destination — a passport is required.</p>
+      }
+      @if (error()) { <p class="error">{{ error() }}</p> }
+
+      <div class="actions">
+        <button class="btn btn-ghost" type="button" (click)="back()">Back</button>
+        <button class="btn" type="submit" [disabled]="submitting()">
+          {{ submitting() ? 'Booking…' : 'Confirm booking' }}
+        </button>
+      </div>
+    </form>
+  </section>
+}

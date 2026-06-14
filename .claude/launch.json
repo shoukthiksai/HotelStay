@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hotelstay-ui",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "submissions/Shoukthik/usecase-002/hotelstay-ui", "start"],
+      "port": 4200
+    }
+  ]
+}

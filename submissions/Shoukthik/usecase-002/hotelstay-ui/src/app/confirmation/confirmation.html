@@ -1,0 +1,15 @@
+@if (confirmation; as c) {
+  <article class="card confirmation">
+    <div class="check">✓</div>
+    <h2>Booking confirmed</h2>
+
+    <dl>
+      <div><dt>Reference</dt><dd class="reference">{{ c.referenceNumber }}</dd></div>
+      <div><dt>Provider</dt><dd>{{ c.provider }}</dd></div>
+      <div><dt>Total price</dt><dd>£{{ c.totalPrice }}</dd></div>
+      <div><dt>Cancellation</dt><dd>{{ cancellationLabels[c.cancellationPolicy] }}</dd></div>
+    </dl>
+
+    <button class="btn" type="button" (click)="newSearch()">New search</button>
+  </article>
+}

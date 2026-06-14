@@ -142,3 +142,17 @@ It is maintained automatically — each entry is added at the point the decision
 **Rationale:** Keeps the stubs deterministic and the normalisation logic the focus, without inventing a destination→catalog matrix the brief never asked for.
 
 **Trade-offs:** Searches look identical across destinations. Acceptable for a stubbed challenge; a real integration would key the catalog by destination.
+
+---
+
+## ADR-011: Angular zoneless + signal state service for the booking flow
+**Date:** 2026-06-15
+**Status:** Decided
+
+**Context:** Angular 22 scaffolds zoneless by default (no `zone.js`). The flow spans three routed views (search → booking → confirmation) that must share the selected room and the resulting confirmation.
+
+**Decision:** Embrace zoneless and drive all view state with signals. A small `BookingFlow` service holds `selection` and `confirmation` as signals; booking/confirmation views read it and redirect home if it's empty.
+
+**Rationale:** Signals are the idiomatic zoneless primitive and update the view without `zone.js`. A shared service is simpler and type-safe versus serialising the selected offer through router state or query params, and it resets naturally when a new search starts.
+
+**Trade-offs:** State is lost on a hard refresh of `/book` or `/confirmation` (the guards redirect to search). Acceptable — these views are only meaningful as steps within a session's flow.
