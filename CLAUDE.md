@@ -4,7 +4,7 @@
 
 - **[challange-hotelstay.md](challange-hotelstay.md)** — the authoritative requirements (verbatim from the challenge PDF). When anything is ambiguous or you hit a blocker, re-read this first; it resolves most questions.
 - **[PLAN.md](PLAN.md)** — phased build order. Follow it in sequence; tick boxes as work completes; log blockers in its Blockers section.
-- **[DECISIONS.md](DECISIONS.md)** — append an ADR whenever a non-trivial design decision is made.
+- **[DECISIONS.md](submissions/Shoukthik/usecase-002/DECISIONS.md)** — append an ADR whenever a non-trivial design decision is made.
 
 ## Code Quality Bar (READ FIRST)
 
@@ -24,7 +24,7 @@ When in doubt, prefer the smaller, clearer solution and note the trade-off in DE
 If a rule here can't be followed as written (ambiguity, conflict, tooling failure):
 1. Re-read [challange-hotelstay.md](challange-hotelstay.md) — it is the requirement source of truth.
 2. If still blocked, record it in the Blockers section of [PLAN.md](PLAN.md) with the question and the assumption taken to proceed. Never silently guess.
-3. If the resolution is architectural, also log an ADR in [DECISIONS.md](DECISIONS.md).
+3. If the resolution is architectural, also log an ADR in [DECISIONS.md](submissions/Shoukthik/usecase-002/DECISIONS.md).
 
 ## Project Overview
 
@@ -208,7 +208,7 @@ Must cover:
 
 ## Architectural Decision Log
 
-Every time a non-trivial design decision is made during implementation, append an entry to `DECISIONS.md` in the project root using this format:
+Every time a non-trivial design decision is made during implementation, append an entry to `DECISIONS.md` (in `submissions/Shoukthik/usecase-002/`) using this format:
 
 ```markdown
 ## ADR-NNN: <short title>

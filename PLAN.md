@@ -5,7 +5,7 @@ until the previous one's exit criterion is met. Tick boxes as work completes.
 
 Source of truth for requirements: [challange-hotelstay.md](challange-hotelstay.md).
 Design rules and constraints: [CLAUDE.md](CLAUDE.md).
-Decisions are logged in [DECISIONS.md](DECISIONS.md) as they are made.
+Decisions are logged in [DECISIONS.md](submissions/Shoukthik/usecase-002/DECISIONS.md) as they are made.
 
 ---
 
@@ -140,15 +140,17 @@ Time-boxed (20–25 min). Proves the abstraction. Touch only new files + DI.
 
 ## Phase 9 — Documentation & submission polish
 
-- [ ] `README.md` — setup (dotnet + ng), run instructions, architecture overview,
-      Copilot/AI usage summary
-- [ ] `spec.md` — interpreted spec / assumptions
-- [ ] `prompts.md` — where AI was used
-- [ ] `reflection.md` — what went well, trade-offs
-- [ ] Verify Definition of Done checklist in [challange-hotelstay.md](challange-hotelstay.md)
-- [ ] Confirm no secrets committed
+- [x] `README.md` — setup (dotnet + ng), run instructions, architecture, API ref, AI-usage summary
+- [x] `spec.md` — interpreted spec / assumptions (document rule, versions, deliberate omissions)
+- [x] `prompts.md` — where AI was used
+- [x] `reflection.md` — what went well, trade-offs, second-pass changes
+- [x] Trimmed default Angular README → pointer to main README
+- [x] Verify Definition of Done (all met — table in README; see below)
+- [x] No-secrets scan — clean
+- [~] Prod API URL: **not done by design** — assignment runs locally; the API origin is a single
+      documented constant (`API_BASE`). An environment file would be speculative for a non-deploy.
 
-**Exit:** Every Definition of Done box ticks.
+**Exit:** Every Definition of Done box ticks. ✅ — `dotnet test` 12 green, `ng build` passes.
 
 ---
 
