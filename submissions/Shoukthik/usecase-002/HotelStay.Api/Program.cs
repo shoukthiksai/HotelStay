@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IHotelProvider, PremierStaysProvider>();
 builder.Services.AddSingleton<IHotelProvider, BudgetNestsProvider>();
+builder.Services.AddSingleton<IHotelProvider, BoutiqueCollectionProvider>();
 builder.Services.AddSingleton<HotelSearchService>();
 builder.Services.AddSingleton<DocumentValidator>();
 builder.Services.AddSingleton<BookingService>();

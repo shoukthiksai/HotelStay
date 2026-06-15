@@ -60,3 +60,6 @@ nunit-*.xml
 node_modules/
 dist/
 .angular/
+
+# Personal Claude Code settings (machine-specific permission state)
+.claude/settings.local.json

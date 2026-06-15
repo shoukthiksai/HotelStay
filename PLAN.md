@@ -127,12 +127,14 @@ live API (Paris booking, passport enforced, ref `HS-…`, total £720 = 4×180).
 
 Time-boxed (20–25 min). Proves the abstraction. Touch only new files + DI.
 
-- [ ] `BoutiqueCollectionProvider` — Deluxe/Suite only (Standard unavailable),
-      base rate + £15/night flat fee, FreeCancellation (72h), boolean availability
-- [ ] One DI registration line
-- [ ] Confirm: no change to `IHotelProvider`, aggregation, booking, or existing providers
+- [x] `BoutiqueCollectionProvider` — Deluxe/Suite only (Standard unavailable),
+      base rate + £15/night flat fee, FreeCancellation, boolean availability
+- [x] One DI registration line
+- [x] Confirmed: `git diff` shows **+1 line in Program.cs** — `IHotelProvider`, aggregation,
+      booking, and both existing providers untouched
+- [x] 2 tests (fee math, Standard unavailable); live search shows Deluxe 315 / Suite 515
 
-**Exit:** New provider appears in search results with zero edits to existing logic.
+**Exit:** New provider appears in search with zero edits to existing logic. ✅ (12 tests green)
 
 ---
 
@@ -162,7 +164,4 @@ conflicting constraint, tooling failure):
 3. If the resolution is an architectural choice, also add an ADR to DECISIONS.md.
 
 ### Blockers
-
-- **B-001 (Phase 0) — Toolchain not installed.** `dotnet` host had runtimes but no SDK;
-  Node/npm absent. **RESOLVED 2026-06-15:** installed .NET SDK 10.0.301, Node v24.16.0,
-  Angular CLI 22.0.1. Target framework is **net10.0** (the installed SDK) — see ADR-007.
+<!-- blockers will be listed here -->
